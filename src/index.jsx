@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 import { App } from './App';
 
-// setup fake backend
+// setting up fake backend
 import { configureFakeBackend } from './_helpers';
 configureFakeBackend();
 

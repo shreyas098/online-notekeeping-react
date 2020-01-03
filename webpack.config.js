@@ -10,10 +10,12 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
+                exclude: /node_modules/,
                 loader: 'babel-loader'
             }
         ]
     },
+    // entry: ['@babel/polyfill', './src/index.jsx'],
     plugins: [new HtmlWebpackPlugin({
         template: './src/index.html'
     })],

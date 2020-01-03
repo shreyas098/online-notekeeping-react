@@ -8,18 +8,24 @@ import { LoginPage } from '../LoginPage';
 class App extends React.Component {
     render() {
         return (
-            <div className="jumbotron">
-                <div className="container">
-                    <div className="col-sm-8 col-sm-offset-2">
-                        <Router>
-                            <div>
-                                <PrivateRoute exact path="/" component={HomePage} />
-                                <Route path="/login" component={LoginPage} />
-                            </div>
-                        </Router>
-                    </div>
+              <div className="callout primary" style={{backgroundColor:'yellow'}} >
+                    <div className="row column">
+                           <h1 align='center' padding='20px'>Online Notekeeping</h1>
+                                 <div className="jumbotron">
+                                     <div className="container">
+                                        <div className="col-sm-8 col-sm-offset-2">
+                                                <Router>
+                                                    <div>
+                                                      <PrivateRoute exact path="/" component={HomePage} />
+                                                     <Route path="/login" component={LoginPage} />
+                                                 </div>
+                                                </Router>
+                                         </div>
+                                    </div>
+                                  </div>
+                        </div>
                 </div>
-            </div>
+            
         );
     }
 }
