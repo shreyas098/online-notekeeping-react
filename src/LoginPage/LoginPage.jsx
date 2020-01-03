@@ -38,20 +38,24 @@ class LoginPage extends React.Component {
             submitted:false,
             username:'',
             password:'',
+            cpassword:'',
             loading:false,
             loading1:true,
             emailid:''
         })
 
     }
+    validateEmail()
+    { const{emailid}=this.state;
+        var e= /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return e.test(emailid);
+    }
     handleSignupSubmit(e){
          e.preventDefault();
         this.setState({ submitted: true });
         const{username,password,cpassword,emailid,error}=this.state;
-         console.log(error)
         // stop here if form is invalid
-        if (!(username && password && cpassword && emailid && (password==cpassword))) {
-            console.log('h');
+        if (!(username && password && cpassword && emailid && (password==cpassword) && this.validateEmail())) {
             return ;
         }
             this.setState({ submitted:true,loading: true,page:'login', });
@@ -136,11 +140,14 @@ class LoginPage extends React.Component {
                             <div className="help-block">Username is required</div>
                         }
                     </div>
-                    <div className={'form-group' + (submitted && !emailid ? ' has-error' : '')}>
+                    <div className={'form-group' + ((submitted && !emailid)||(submitted && !(this.validateEmail())) ? ' has-error' : '')}>
                         <label htmlFor="username">Email Id</label>
                         <input type="text" className="form-control" name="emailid" value={emailid} onChange={this.handleChange} />
                         {submitted && !emailid &&
                             <div className="help-block">Email Id is required</div>
+                            ||
+                            submitted && !(this.validateEmail()) &&
+                            <div className="help-block">Enter Proper Email Id</div>
                         }
                     </div>
                     <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
